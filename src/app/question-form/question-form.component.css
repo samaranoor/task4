@@ -1,0 +1,14 @@
+Questionnaire{
+    font:bold;
+    color: rgba(249, 246, 253, 0.87);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 1000;
+    text-align: center;
+    margin-left: 800px; 
+
+}
+
+.navbar
+{
+    background-color: rgba(50, 78, 151, 0.827);
+}
