@@ -1,0 +1,72 @@
+<form>
+<nav class="navbar ">
+  <a class="navbar-brand" href="#">
+    <img src="assets/OIP.jpg" width="50" height="50" class="d-inline-block align-top" alt="">
+
+  </a>
+</nav>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+
+
+
+<div class="container mt-4">
+  <div *ngIf="currentQuestionIndex < questions.length" class="card p-3">
+    <h3 class="mb-3">Question {{ currentQuestionIndex + 1 }}</h3>
+    <p>{{ questions[currentQuestionIndex].question }}</p>
+    <ul class="list-unstyled">
+      <li *ngFor="let option of questions[currentQuestionIndex].options" class="mb-2">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            name="question{{ currentQuestionIndex }}"
+            [value]="option"
+            [(ngModel)]="selectedOptions[currentQuestionIndex]"
+            class="form-check-input"
+          />
+          {{ option }}
+        </label>
+      </li>
+    </ul>
+
+
+  <div *ngIf="currentQuestionIndex === questions.length" class="mt-4">
+    <h3>Thank You!</h3>
+  </div>
+</div>
+
+
+
+
+
+
+<div *ngIf="currentQuestionIndex < questions.length" class="card p-3">
+  <!-- ... Your existing question and options code ... -->
+  <button *ngIf="currentQuestionIndex > 0" class="btn btn-secondary" (click)="goToPreviousQuestion()">PREVIOUS</button>
+  <button type="submit" *ngIf="currentQuestionIndex === questions.length - 1" class="btn btn-primary" (click)="submitAnswers()">Submit</button>
+  <ng-container *ngIf="currentQuestionIndex < questions.length - 1">
+    <button class="btn btn-primary" (click)="goToNextQuestion()" [disabled]="nextQuestion">NEXT</button>
+  </ng-container>
+  <div *ngIf="resultsVisible" class="mt-4">
+    <h3>Thank You!</h3>
+    <p>Your result :</p>
+    <ul>
+      <li *ngFor="let response of selectedOptions; let i = index">
+        Question {{ i + 1 }}: {{ questions[i].question }} - Your Answer: {{ response }}
+        <span *ngIf="isAnswerCorrect(i)" class="text-success"> - Correct</span>
+        <span *ngIf="!isAnswerCorrect(i)" class="text-danger"> - Incorrect</span>
+      </li>
+    </ul>
+    <p>Total Correct Answers: {{ calculateCorrectAnswers() }}</p>
+    <p>Total Incorrect Answers: {{ calculateIncorrectAnswers() }}</p>
+    <p>Total Score: {{ calculateScore() }} / {{ questions.length }}</p>
+    <p>{{ submitMessage }}</p>
+  </div>
+</div>
+
+<form>                   
+                     

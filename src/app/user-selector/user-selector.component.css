@@ -1,4 +1,4 @@
-Questionnaire{
+.Questionnaire{
     font:bold;
     color: rgba(249, 248, 251, 0.87);
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -12,3 +12,15 @@ Questionnaire{
 {
     background-color: rgba(88, 81, 223, 0.827);
 }
+label {
+    width: 500px; 
+}
+.form-group{
+    margin-left: 100px;
+
+}
+#user{
+    width: 500px ;
+}
+
+
